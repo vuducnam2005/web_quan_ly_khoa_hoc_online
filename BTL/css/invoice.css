@@ -1,0 +1,252 @@
+/* === invoice.css === */
+/* Style CHỈ dành cho Trang Hóa Đơn (Bản nâng cấp "Siêu Đẹp") */
+
+body.invoice-page-wrapper {
+    background-color: var(--light-color); 
+}
+body.invoice-page-wrapper .main-content .container {
+    max-width: 100%;
+    padding: 0;
+}
+body.invoice-page-wrapper .flash-message {
+    max-width: 900px; 
+    margin: 2rem auto 0 auto;
+}
+
+/* Bố cục trang hóa đơn */
+.invoice-layout {
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.invoice-box {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07); 
+    padding: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Header Hóa đơn */
+.invoice-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem; 
+}
+.invoice-header .logo {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+.header-left span {
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+.header-right {
+    text-align: right;
+}
+.header-right h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin: 0;
+    text-transform: uppercase;
+}
+.header-right .invoice-id {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+/* Thông tin Khách hàng */
+.invoice-customer {
+    display: flex;
+    justify-content: space-between; 
+    margin-bottom: 2.5rem; 
+}
+.bill-to {
+    color: var(--secondary-color);
+    line-height: 1.7; 
+}
+.bill-to strong {
+    color: var(--dark-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.invoice-meta {
+    text-align: right;
+    color: var(--secondary-color);
+    flex-shrink: 0; 
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns: auto auto; 
+    gap: 0.5rem 1rem; 
+}
+.invoice-meta div {
+    display: grid;
+    grid-template-columns: subgrid; 
+    grid-column: 1 / -1;
+}
+.invoice-meta strong {
+    color: var(--dark-color);
+}
+
+/* Style Bảng */
+.invoice-box .admin-table-responsive { width: 100%; overflow-x: auto; background-color: #fff; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.invoice-box .admin-table { width: 100%; border-collapse: collapse; }
+.invoice-box .admin-table th,
+.invoice-box .admin-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+.invoice-box .admin-table thead th { 
+    background-color: var(--light-color); 
+    font-weight: 600; 
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.invoice-box .admin-table tbody tr:last-child td {
+    border-bottom: none; 
+}
+.invoice-box .admin-table tbody tr:hover { background-color: #f9f9f9; }
+
+/* Style cho Trạng thái */
+.invoice-box .status-badge {
+    color: #0f0707 !important; 
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 20px;
+}
+.invoice-box .status-badge.status-đã-xác-nhận,
+.invoice-box .status-badge.status-đang-xử-lý {
+    background-color: var(--success-color) !important;
+}
+.invoice-box .status-badge.status-đã-hủy {
+    background-color: var(--danger-color) !important;
+}
+
+/* Style cho Tổng tiền */
+.invoice-box .admin-table tfoot td {
+    border-top: 2px solid var(--dark-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.invoice-box .admin-table tfoot .total-label {
+    text-align: right;
+    color: var(--secondary-color);
+}
+.invoice-box .admin-table tfoot .total-value {
+    color: var(--dark-color);
+    font-size: 1.5rem; 
+    font-weight: 700;
+}
+
+/* Footer Hóa đơn */
+.invoice-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+.invoice-footer p {
+    margin: 0;
+    color: var(--secondary-color);
+    font-style: italic;
+}
+.invoice-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+
+/* === (MỚI) CSS CHO POPUP MODAL === */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+.modal-box {
+    background: #fff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(0.9);
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+.modal-box h3 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.modal-box p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    white-space: pre-wrap; 
+}
+.modal-box .btn-close {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 0;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+.modal-box.error h3 {
+    color: var(--danger-color);
+}
+.modal-box.success h3 {
+    color: var(--success-color);
+}
+/* Thêm animation */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+
+/* Style khi In */
+@media print {
+    body {
+        background-color: #fff;
+    }
+    /* (SỬA) Ẩn cả modal khi in */
+    .main-header, .main-footer, .invoice-actions, .modal-overlay {
+        display: none !important;
+    }
+    .page-wrapper, .main-content {
+        display: block;
+    }
+    .invoice-layout {
+        margin: 0;
+        max-width: 100%;
+    }
+    .invoice-box {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+    }
+}

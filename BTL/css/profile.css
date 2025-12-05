@@ -1,0 +1,223 @@
+
+/* Wrapper để xử lý flash message */
+.container-wrapper-flash .container {
+    padding: 0;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+.profile-page-wrapper .flash-message {
+    margin-top: 2rem;
+}
+body.profile-page-wrapper .main-content {
+    padding-top: 0;
+}
+body.profile-page-wrapper .container {
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Bố cục 2 cột */
+body.profile-page-wrapper .profile-layout {
+    display: flex;
+    max-width: var(--container-width);
+    margin: 2rem auto;
+    gap: 2rem;
+    align-items: flex-start;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* 1. Sidebar (Menu) */
+body.profile-page-wrapper .profile-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 100px;
+}
+body.profile-page-wrapper .profile-avatar {
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+body.profile-page-wrapper .profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+body.profile-page-wrapper .profile-avatar img:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+body.profile-page-wrapper .profile-avatar h3 {
+    font-size: 1.3rem;
+    color: var(--dark-color);
+    margin-bottom: 0.25rem;
+}
+body.profile-page-wrapper .profile-avatar p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+    word-break: break-all;
+}
+
+/* Form Upload Avatar */
+body.profile-page-wrapper .avatar-upload-form {
+    margin-top: 1rem;
+}
+body.profile-page-wrapper .avatar-upload-form .btn-secondary {
+    border-radius: 5px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+body.profile-page-wrapper .avatar-upload-form .hidden-file-input {
+    display: none;
+}
+
+/* Menu Sidebar */
+body.profile-page-wrapper .profile-nav ul {
+    list-style: none;
+    padding: 0.5rem;
+}
+body.profile-page-wrapper .profile-nav a {
+    display: block;
+    padding: 0.9rem 1.25rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+body.profile-page-wrapper .profile-nav a:hover {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+body.profile-page-wrapper .profile-nav a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+
+/* 2. Nội dung (Tabs) */
+body.profile-page-wrapper .profile-content {
+    flex-grow: 1;
+    min-width: 0; 
+}
+
+/* (SỬA LỖI) Thẻ thống kê */
+body.profile-page-wrapper .profile-content .profile-stat {
+    display: block !important; 
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-color-dark)) !important;
+    color: #fff !important; 
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 0.2s forwards;
+    animation-fill-mode: both;
+}
+body.profile-page-wrapper .profile-content .profile-stat h3 {
+    color: #eee !important;
+    font-size: 1.1rem;
+}
+body.profile-page-wrapper .profile-content .profile-stat p {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff !important; /* Đảm bảo chữ màu trắng */
+    margin-bottom: 0;
+}
+
+/* Logic hiển thị tab */
+body.profile-page-wrapper .profile-tab-content {
+    display: none; 
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+body.profile-page-wrapper .profile-tab-content.active {
+    display: block;
+}
+
+body.profile-page-wrapper .profile-content h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+/* (MỚI) Sao chép style bảng */
+body.profile-page-wrapper .admin-table-responsive { width: 100%; overflow-x: auto; background-color: #fff; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+body.profile-page-wrapper .admin-table { width: 100%; border-collapse: collapse; }
+body.profile-page-wrapper .admin-table th,
+body.profile-page-wrapper .admin-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+body.profile-page-wrapper .admin-table thead th { background-color: var(--light-color); font-weight: 600; }
+body.profile-page-wrapper .admin-table tbody tr:hover { background-color: #f4f7f6; }
+body.profile-page-wrapper .admin-table .btn-small { border-radius: 5px; }
+
+/* (MỚI) Sao chép style form */
+body.profile-page-wrapper .admin-form { 
+    padding: 0; 
+    box-shadow: none; 
+    background: none; 
+    border-radius: 0;
+    border: 0;
+}
+body.profile-page-wrapper .admin-form .btn {
+    border-radius: 5px;
+}
+
+/* (SỬA LỖI) Style cho Trạng thái Đơn hàng */
+body.profile-page-wrapper .status-badge {
+    color: #100909 !important; 
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 20px;
+}
+body.profile-page-wrapper .status-badge.status-đã-xác-nhận,
+body.profile-page-wrapper .status-badge.status-đang-xử-lý {
+    background-color: var(--success-color) !important; /* Màu xanh lá */
+}
+body.profile-page-wrapper .status-badge.status-đã-hủy {
+    background-color: var(--danger-color) !important; /* Màu đỏ */
+}
+
+
+/* Responsive cho Trang cá nhân */
+@media (max-width: 768px) {
+    body.profile-page-wrapper .profile-layout {
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+    body.profile-page-wrapper .profile-sidebar {
+        width: 100%;
+        position: static;
+    }
+    body.profile-page-wrapper .profile-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    body.profile-page-wrapper .profile-nav a {
+        padding: 0.7rem;
+    }
+    
+    body.profile-page-wrapper .admin-table thead { display: none; }
+    body.profile-page-wrapper .admin-table tr { display: block; margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 0.25rem; }
+    body.profile-page-wrapper .admin-table td { display: flex; justify-content: space-between; align-items: center; text-align: right; padding: 0.75rem; border-bottom: 1px solid var(--light-color); }
+    body.profile-page-wrapper .admin-table td:last-child { border-bottom: 0; }
+    body.profile-page-wrapper .admin-table td::before { content: attr(data-label); font-weight: bold; text-align: left; padding-right: 1rem; color: var(--dark-color); }
+}

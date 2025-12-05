@@ -1,0 +1,303 @@
+/* === CHAT WIDGET === */
+
+/* Nút Chat tròn */
+.chat-toggle-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 10000;
+    transition: transform 0.3s ease;
+}
+.chat-toggle-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color-dark);
+}
+.chat-toggle-btn svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* Hộp Chat */
+.chat-box-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 450px;
+    height: 550px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    display: none; /* Mặc định ẩn */
+    flex-direction: column;
+    z-index: 10000;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+    border: 1px solid var(--border-color);
+}
+.chat-box-container.open {
+    display: flex;
+}
+
+/* Header Hộp Chat */
+.chat-header {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-header h3 { margin: 0; font-size: 1.1rem; }
+.chat-close { cursor: pointer; font-size: 1.2rem; font-weight: bold; }
+
+/* Nội dung tin nhắn */
+.chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+/* Bong bóng tin nhắn */
+.message-bubble {
+    max-width: 80%;
+    width: fit-content; 
+    padding: 2px 10px;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    position: relative;
+    
+}
+
+.msg-user {
+    background-color: var(--primary-color);
+    color: #fff;
+    margin-left: auto;      /* Đẩy bong bóng sang phải */
+    border-bottom-right-radius: 2px;
+}
+.msg-admin {
+    align-self: flex-start;
+    background-color: #e9ecef;
+    color: #333;
+    border-bottom-left-radius: 2px;
+}
+.msg-time {
+    font-size: 0.7rem;
+    margin-top: 3px;
+    opacity: 0.7;
+    text-align: right;
+    display: block;
+}
+
+/* Form nhập tin nhắn */
+.chat-input-area {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 5px;
+    background: #fff;
+}
+.chat-input-area input {
+    flex-grow: 1;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+.chat-input-area button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+/* === MENU 3 CHẤM TRONG CHAT === */
+.msg-row {
+    position: relative;
+    /* Để menu hiển thị đè lên các phần tử khác */
+    
+
+}
+
+.msg-actions {
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    position: relative;
+}
+
+.msg-row:hover .msg-actions {
+    opacity: 1; /* Hiện khi di chuột vào dòng tin nhắn */
+}
+
+.btn-msg-dots {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #aaa;
+    padding: 0 5px;
+}
+.btn-msg-dots:hover { color: #555; }
+
+/* Menu Dropdown */
+.msg-menu {
+    position: absolute;
+    bottom: 100%; /* Hiện lên trên nút */
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 100;
+    width: 100px;
+    overflow: hidden;
+}
+.msg-menu.show { display: block; }
+
+/* Canh lề cho menu tùy theo người gửi */
+.msg-row.user.msg-menu { right: 0; }
+    
+.msg-row.admin .msg-menu { left: 0; }
+
+.msg-menu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: #333;
+}
+.msg-menu button:hover { background: #f5f5f5; color: var(--primary-color); }
+.msg-menu button.delete-opt { color: var(--danger-color); }
+.msg-menu button.delete-opt:hover { background: #fff5f5; }
+
+/* Hiển thị Quote (Trả lời) */
+.reply-preview {
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-left: 3px solid var(--primary-color);
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: none; /* Mặc định ẩn */
+    justify-content: space-between;
+    align-items: center;
+}
+.reply-preview span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.btn-close-reply {
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #999;
+}
+/* === STYLE CHO TIN NHẮN TRẢ LỜI (QUOTE) === */
+
+/* Khung bao quanh tin nhắn cũ */
+.reply-preview {
+    display: block;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 10px; /* Bo góc mềm mại */
+    font-size: 0.85rem;
+    position: relative;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* Hiệu ứng khi di chuột vào phần trích dẫn */
+.reply-preview:hover {
+    opacity: 0.8;
+}
+
+/* Thêm chữ "Đã trả lời:" nhỏ ở trên */
+.reply-preview::before {
+    content: "↪ Đã trả lời:";
+    display: block;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+    opacity: 0.7;
+}
+
+/* --- MÀU SẮC CHO TỪNG LOẠI BONG BÓNG --- */
+
+/* 1. Nếu nằm trong tin nhắn của USER (Nền xanh) */
+.msg-user .reply-preview {
+    background-color: rgba(0, 0, 0, 0.15); /* Nền tối nhẹ để nổi trên màu xanh */
+    color: #fff; /* Chữ trắng */
+    border-left: 3px solid rgba(255, 255, 255, 0.5); /* Viền trái trắng mờ */
+}
+
+/* 2. Nếu nằm trong tin nhắn của ADMIN (Nền xám) */
+.msg-admin .reply-preview {
+    background-color: rgba(0, 0, 0, 0.05); /* Nền tối nhẹ trên nền xám */
+    color: #333; /* Chữ đen */
+    border-left: 3px solid #bbb; /* Viền trái xám đậm */
+}
+
+/* Xử lý text dài quá thì cắt bớt */
+.reply-preview {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+/* Badge thông báo tin nhắn */
+.chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545; /* Màu đỏ */
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #fff;
+    animation: bounce 0.5s;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}

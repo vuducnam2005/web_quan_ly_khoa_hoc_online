@@ -1,0 +1,302 @@
+/* === cart.css === */
+
+/* Layout chính */
+.cart-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Cột bên trái: Danh sách sản phẩm */
+.cart-items {
+    flex: 2;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.cart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+.cart-item:hover {
+    background-color: #f9f9f9;
+}
+
+.item-image img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 1.5rem;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+.item-details h3 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 0.3rem;
+}
+.item-details .item-price {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.item-actions {
+    text-align: right;
+}
+.btn-remove {
+    color: var(--danger-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+.btn-remove:hover {
+    background-color: #ffebee;
+}
+
+/* Cột bên phải: Tổng tiền & Thanh toán */
+.cart-summary {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    position: sticky;
+    top: 100px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+.summary-row.total {
+    border-top: 2px solid var(--border-color);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+.summary-row.total span:last-child {
+    color: var(--primary-color);
+}
+
+.btn-checkout {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.btn-checkout:hover {
+    background-color: var(--primary-color-dark);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 3rem;
+}
+.empty-cart img {
+    width: 150px;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+.empty-cart .btn {
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+    }
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .item-actions {
+        width: 100%;
+        text-align: left;
+    }
+}
+/* === CSS CHO POPUP QR CODE === */
+
+.qr-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Nền tối mờ */
+    z-index: 9999; /* Nổi lên trên cùng */
+    display: none; /* Mặc định ẩn */
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px); /* Làm mờ nền sau */
+}
+
+/* Class để hiện popup */
+.qr-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.qr-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 360px; /* Độ rộng vừa phải */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    transform: scale(0.9);
+    animation: zoomIn 0.3s ease-out forwards;
+}
+
+.qr-header {
+    margin-bottom: 15px;
+    position: relative;
+}
+.qr-header h3 {
+    margin: 0;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+.qr-close {
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    padding: 5px;
+}
+.qr-close:hover { color: #333; }
+
+.qr-image {
+    width: 100%; /* QR to rõ */
+    max-width: 250px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.qr-note {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+.qr-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.qr-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-qr-cancel {
+    background-color: #dc3545; /* Màu đỏ */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+}
+.btn-qr-confirm {
+    background-color: #28a745; /* Màu xanh lá */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+}
+.btn-qr-cancel:hover { background-color: #c82333; }
+.btn-qr-confirm:hover { background-color: #218838; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes zoomIn { from { transform: scale(0.8); } to { transform: scale(1); } }
+/* === STYLE CHO CHECKBOX GIỎ HÀNG === */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+    
+}
+
+/* Checkbox to hơn chút cho dễ bấm */
+.item-checkbox {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: var(--primary-color); /* Màu xanh khi tích */
+}
+
+/* Ẩn nút thanh toán khi chưa chọn gì */
+.btn-checkout:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+/* Căn chỉnh khu vực hành động (Nút xóa + Checkbox) */
+.item-actions {
+    display: flex;           /* Xếp hàng ngang */
+    align-items: center;     /* Căn giữa dọc */
+    gap: 15px;               /* Khoảng cách giữa ô tick và nút xóa */
+    flex-direction: row-reverse; /* Đảo ngược: Nút Xóa bên phải, Ô tick bên trái nó */
+}
+
+/* Chỉnh lại ô checkbox */
+.item-checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 0;               /* Xóa margin cũ */
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
